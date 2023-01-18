@@ -1,0 +1,20 @@
+.text {
+  text-align: center;
+  font-size: 50px;
+  font-family: "Comic Sans MS", sans-serif;
+  font-weight: bold;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+
+.table {
+  font-family: "Comic Sans MS", sans-serif;
+  font-size: 20px;
+}
