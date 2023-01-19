@@ -4,6 +4,7 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {RouterModule} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {UnitsService} from "./units.service";
 
 
 @NgModule({
@@ -19,5 +20,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
   exports: [
     NavbarComponent
   ]
+  ,
+  providers:[UnitsService]
 })
 export class ComponentsModule { }

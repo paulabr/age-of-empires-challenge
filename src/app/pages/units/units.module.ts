@@ -8,6 +8,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatListModule} from "@angular/material/list";
 import {MatSliderModule} from "@angular/material/slider";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatButtonToggleModule,
     MatListModule,
     MatSliderModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule
   ]
 })
 export class UnitsModule { }
