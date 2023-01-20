@@ -9,6 +9,8 @@ import {MatListModule} from "@angular/material/list";
 import {MatSliderModule} from "@angular/material/slider";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatListModule,
     MatSliderModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatCheckboxModule
   ]
 })
 export class UnitsModule { }
