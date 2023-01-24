@@ -4,6 +4,7 @@ import UnitsJSON from '../../../../assets/age-of-empires-units.json';
 import {Cost, Unit} from "../../../model";
 import {FormBuilder, UntypedFormGroup} from "@angular/forms";
 import {UnitsService} from "../../../components/units.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class UnitsViewComponent implements OnInit {
   filterForm: UntypedFormGroup | undefined;
   displayedColumns: string[] = ['id', 'name', 'age', 'cost'];
 
-  constructor(private fb: FormBuilder, private  unitsService:UnitsService) {
+  constructor(private fb: FormBuilder, private  unitsService:UnitsService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -48,6 +49,11 @@ export class UnitsViewComponent implements OnInit {
     str += element?.Wood? `Wood:${element.Wood}`:' ';
     return str;
 
+  }
+
+  navigateToDetailPage(row: any) {
+    debugger;
+    this.router.navigate(['/units', row.id]).then(r => console.log(r) );
   }
 
 }

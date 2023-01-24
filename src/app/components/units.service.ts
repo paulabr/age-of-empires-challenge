@@ -68,6 +68,6 @@ export class UnitsService {
 
 
   getUnitById(id: number) {
-    return this.units[id];
+    return this.units.find((unit) => unit.id === id);
   }
 }
