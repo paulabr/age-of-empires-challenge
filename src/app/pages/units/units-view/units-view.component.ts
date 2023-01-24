@@ -26,9 +26,9 @@ export class UnitsViewComponent implements OnInit {
     this.filterForm = this.fb.group(
       {
         age: ['all'],
-        wood: [200],
+        wood: [225],
         food: [200],
-        gold: [200],
+        gold: [225],
         onlyFood: [false],
         onlyWood: [false],
         onlyGold: [false]
