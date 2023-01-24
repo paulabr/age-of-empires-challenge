@@ -46,15 +46,15 @@ export class UnitsService {
       return true;
     }
     // @ts-ignore
-    if (filter.wood && ((unit.cost?.Wood) >= (filter?.wood))) {
+    if (filter.wood && ((unit.cost?.Wood) > (filter?.wood))) {
       return false
     }
     // @ts-ignore
-    if (filter.food && ((unit.cost?.Food) >= (filter?.food))) {
+    if (filter.food && ((unit.cost?.Food) > (filter?.food))) {
       return false
     }
     // @ts-ignore
-    if (filter.gold && ((unit.cost?.Gold) >= (filter?.gold))) {
+    if (filter.gold && ((unit.cost?.Gold) > (filter?.gold))) {
       return false
     }
     return true;

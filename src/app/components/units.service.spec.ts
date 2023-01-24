@@ -9,7 +9,7 @@ describe('ValueService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  it('should', () => {
+  it('should filter by check => true', () => {
     // Arrange
     const filter = {
       age: 'all',
@@ -30,13 +30,36 @@ describe('ValueService', () => {
     //Assert
     expect(res).toEqual(true)
   });
-  it('should', () => {
+
+  it('should filter by check => false', () => {
     // Arrange
     const filter = {
       age: 'all',
       food: 200,
       wood: 225,
-      gold: 225
+      gold: 225,
+      onlyGold:true
+    } as UnitsFilter;
+    const unit = {
+      cost: {
+        Food: 30,
+        Wood: 50
+      }
+    } as Unit
+    // Act
+    const res = service.filterByProperty(unit, filter);
+
+    //Assert
+    expect(res).toEqual(false)
+  });
+
+  it('should filter by cost of gold => true', () => {
+    // Arrange
+    const filter = {
+      age: 'all',
+      food: 200,
+      wood: 225,
+      gold: 50
     } as UnitsFilter;
     const unit = {
       cost: {
@@ -51,7 +74,28 @@ describe('ValueService', () => {
     expect(res).toEqual(true)
   });
 
-  it('should', () => {
+  it('should filter by cost of gold => false', () => {
+    // Arrange
+    const filter = {
+      age: 'all',
+      food: 200,
+      wood: 225,
+      gold: 40
+    } as UnitsFilter;
+    const unit = {
+      cost: {
+        Food: 30,
+        Gold: 50
+      }
+    } as Unit
+    // Act
+    const res = service.filterByCost(unit, filter);
+
+    //Assert
+    expect(res).toEqual(false)
+  });
+
+  it('should filter by cost of food => true ', () => {
     // Arrange
     const filter = {
       age: 'all',
@@ -71,12 +115,33 @@ describe('ValueService', () => {
     expect(res).toEqual(true)
   });
 
-  it('should', () => {
+  it('should filter by cost of food => false ', () => {
+    // Arrange
+    const filter = {
+      age: 'all',
+      wood: 200,
+      food: 10,
+    } as UnitsFilter;
+    const unit = {
+      cost: {
+        Food: 30,
+        Gold: 50
+      }
+    } as Unit
+    // Act
+    const res = service.filterByCost(unit, filter);
+
+    //Assert
+    expect(res).toEqual(false)
+  });
+
+  it('should filter by gold => true', () => {
     // Arrange
     const filter = {
       age: 'all',
       wood: 200,
       food: 225,
+      gold: 50,
     } as UnitsFilter;
     const unit = {
       cost: {
@@ -90,12 +155,13 @@ describe('ValueService', () => {
     expect(res).toEqual(true)
   });
 
-  it('should', () => {
+  it('should filter by gold => false', () => {
     // Arrange
     const filter = {
       age: 'all',
       wood: 200,
-      gold: 25,
+      food: 225,
+      gold: 1,
     } as UnitsFilter;
     const unit = {
       cost: {
@@ -109,13 +175,27 @@ describe('ValueService', () => {
     expect(res).toEqual(false)
   });
 
+  it('should return all units without cost', () => {
+    // Arrange
+    const filter = {
+      age: 'all',
+      wood: 1,
+      food: 1,
+      gold: 1,
+    } as UnitsFilter;
+    // Act
+    const units = service.getUnits(filter);
+    //Assert
+    expect(units.length).toEqual(9);
+  });
+
   it('should return all units', () => {
     // Arrange
     const filter = {
       age: 'all',
-      wood: 300,
+      wood: 225,
       food: 300,
-      gold: 300
+      gold: 225
     } as UnitsFilter;
     // Act
     const units = service.getUnits(filter);
@@ -124,7 +204,7 @@ describe('ValueService', () => {
     expect(units.length).toEqual(104)
   });
 
-  it('should return units under 41 wood', () => {
+  it('should return units under or equal to 41 wood', () => {
     // Arrange
     const filter = {
       age: 'all',
@@ -136,8 +216,7 @@ describe('ValueService', () => {
     const units = service.getUnits(filter);
 
     //Assert
-    expect(units.length).toEqual(70)
-
+    expect(units.length).toEqual(72)
   });
 
   it('should return units under or up to filter', () => {
@@ -152,8 +231,7 @@ describe('ValueService', () => {
     const units = service.getUnits(filter);
 
     //Assert
-    expect(units.length).toEqual(18)
-
+    expect(units.length).toEqual(22)
   });
 
   it('should return all dark', () => {
@@ -169,10 +247,9 @@ describe('ValueService', () => {
 
     //Assert
     expect(units.length).toEqual(13)
-
   });
 
-  it('should return 1 feudal with food only per cost', () => {
+  it('should return 4 units with feudal and food on cost', () => {
     // Arrange
     const filter = {
       age: 'feudal',
@@ -186,7 +263,7 @@ describe('ValueService', () => {
     expect(units.length).toEqual(4)
   });
 
-  it('should return all units 2', () => {
+  it('should return no units', () => {
     // Arrange
     const filter = {
       age: 'all',
@@ -204,7 +281,7 @@ describe('ValueService', () => {
     expect(units.length).toEqual(0)
   });
 
-  it('should return all units 3', () => {
+  it('should return all units with gold and wood in cost', () => {
     // Arrange
     const filter = {
       age: 'all',
