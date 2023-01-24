@@ -1,13 +1,23 @@
 .text {
   text-align: center;
   font-size: 50px;
-  font-family: "Comic Sans MS", sans-serif;
   font-weight: bold;
   margin-top: 50px;
   margin-bottom: 50px;
+  font-family: "Comic Sans MS", sans-serif;
 }
 
-.table {
-  height: 400px;
-  overflow: auto;
+table, th, td {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+}
+th, td {
+  text-align: left;
+  padding: 0 16px 0 16px;
+  font-size: 14px;
+  height: 52px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+th {
+  font-weight: 500;
 }
