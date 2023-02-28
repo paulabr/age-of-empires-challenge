@@ -15,7 +15,7 @@ const routes: Routes = [{
     loadChildren: () => import('./pages/units/units.module').then((m) => m.UnitsModule)
   },
   {
-    path: 'unit-detail',
+    path: 'units/:id',
     loadChildren: () => import('./pages/unit-detail/unit-detail.module').then((m) => m.UnitDetailModule)
   }
 ];

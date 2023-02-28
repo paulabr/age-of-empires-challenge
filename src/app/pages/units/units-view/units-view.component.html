@@ -19,10 +19,10 @@
     </div>
 
     <div fxLayout="column" fxLayoutGap="3px" class="sliders">
-      <mat-slider [min]="1" [max]="200">
+      <mat-slider [min]="1" [max]="225">
         <input matSliderThumb formControlName="wood">
       </mat-slider>
-      <mat-slider [min]="1" [max]="225">
+      <mat-slider [min]="1" [max]="200">
         <input matSliderThumb formControlName="food">
       </mat-slider>
       <mat-slider [min]="1" [max]="225">
@@ -57,7 +57,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateToDetailPage(row)"></tr>
 
   </table>
 </div>

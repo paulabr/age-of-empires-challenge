@@ -4,6 +4,7 @@ import UnitsJSON from '../../../../assets/age-of-empires-units.json';
 import {Cost, Unit} from "../../../model";
 import {FormBuilder, UntypedFormGroup} from "@angular/forms";
 import {UnitsService} from "../../../components/units.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class UnitsViewComponent implements OnInit {
   filterForm: UntypedFormGroup | undefined;
   displayedColumns: string[] = ['id', 'name', 'age', 'cost'];
 
-  constructor(private fb: FormBuilder, private  unitsService:UnitsService) {
+  constructor(private fb: FormBuilder, private  unitsService:UnitsService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -25,9 +26,9 @@ export class UnitsViewComponent implements OnInit {
     this.filterForm = this.fb.group(
       {
         age: ['all'],
-        wood: [200],
+        wood: [225],
         food: [200],
-        gold: [200],
+        gold: [225],
         onlyFood: [false],
         onlyWood: [false],
         onlyGold: [false]
@@ -36,18 +37,20 @@ export class UnitsViewComponent implements OnInit {
     this.toBeDisplayed = this.unitsService.getUnits(this.filterForm.value);
 
     this.filterForm.valueChanges.subscribe(filter => {
-      console.log(filter)
       this.toBeDisplayed = this.unitsService.getUnits(filter);
     })
   }
 
   getCosts(element: Cost) {
     let str = '';
-    str += element?.Food? `Food:${element.Food}`:' ';
-    str += element?.Gold? `Gold:${element.Gold}`:' ';
-    str += element?.Wood? `Wood:${element.Wood}`:' ';
+    str += element?.Food? `Food:${element.Food} `:' ';
+    str += element?.Gold? `Gold:${element.Gold} `:' ';
+    str += element?.Wood? `Wood:${element.Wood} `:' ';
     return str;
+  }
 
+  navigateToDetailPage(row: any) {
+    this.router.navigate(['/units', row.id]).then(r => console.log(r) );
   }
 
 }
